@@ -25,8 +25,10 @@ de contar con los siguientes requerimientos:
 1.  Descargar o clonar el repositorio desde Github:
     <https://github.com/gianfrancob/detector_pivotes_silobolsas>
 
-2.  Inicializar el contenedor Docker corriendo: _docker run
-    ./utils/docker/Dockerfile_
+2.  Inicializar el contenedor Docker corriendo:
+
+    - _docker build -t detector_pivotes_silobolsas ._
+    - _docker run -p 5000:5000 --name test -it detector_pivotes_silobolsas_
 
 3.  En el caso de no optar por el uso de Docker, se puede correr
     localmente de la siguiente manera:
