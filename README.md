@@ -1,5 +1,7 @@
 # Manual de Usuario
 
+## Introduccion
+
 En esta sección se detallan los pasos a seguir para el uso adecuado del
 software Detector de Pivotes de Riego y Silobolsas en Imágenes
 Satelitales para aplicaciones agrícolas.
