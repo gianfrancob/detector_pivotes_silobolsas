@@ -89,3 +89,9 @@ Una vez realizada la detección de los objetos, se va a mostrar como
 resultado las imágenes analizadas indicando la presencia de los objetos
 Silo bolsas o Riegos por Pívot junto con una tabla donde se detalla la
 información de la detección.
+
+## Agradecimientos
+
+El siguiente proyecto no hubiera sido posible sin el gran trabajo
+realizado por Ultralytics que desarrolló el modelo de YOLOv5 en
+Pytorch: <https://github.com/ultralytics/yolov5>.
