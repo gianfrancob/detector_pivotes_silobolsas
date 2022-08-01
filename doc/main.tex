@@ -1,0 +1,153 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[runningheads]{llncs}
+\usepackage[titletoc,toc,page]{appendix}
+\usepackage{lipsum}
+\renewcommand{\appendixpagename}{\appendixname}
+\renewcommand{\appendixtocname}{\appendixname}
+\noappendicestocpagenum
+\usepackage[spanish]{babel} % espanol, ingles
+\usepackage[utf8]{inputenc} % acentos sin codigo
+\usepackage[dvipsnames, table]{xcolor}
+\definecolor{mygray}{gray}{0.9}
+\usepackage{minted}
+\usemintedstyle{friendly}
+\usepackage{breakurl}
+\usepackage{tabularx}
+\usepackage{array, graphicx}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{changepage}
+\usepackage{tabu}
+\usepackage{bmpsize}
+\usepackage{subcaption}
+\usepackage{booktabs}% http://ctan.org/pkg/booktabs
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+\usepackage{float}
+\usepackage[hyphens]{url}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{amssymb}
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\usepackage[export]{adjustbox}[2011/08/13]
+\usepackage[square, numbers, comma, sort&compress]{natbib} % Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers' 
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+    citecolor=blue,
+    pdftitle={Detector de Pivotes de Riego y Silobolsas en Imágenes Satelitales para aplicaciones agrícolas},
+    pdfpagemode=FullScreen
+} % Colors hyperlinks in blue - change to black if annoying
+
+
+\begin{document}
+\frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % New command to make the lines in the title page
+\selectlanguage{spanish}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{titlepage}
+\begin{center}
+\textsc{\LARGE Universidad Nacional de Córdoba}\\ % University name
+
+\begin{figure}[htbp]
+	\centering
+		\includegraphics[width=0.5\textwidth]{img/logo.png}
+		\rule{35em}{0.5pt}
+\end{figure}
+
+\textsc{\Large Proyecto Integrador}\\[0.5cm] % Thesis type
+\textsc{\Large Ingeniería en Computación}\\[0.5cm] % Thesis type
+
+\HRule \\[0.4cm] % Horizontal line
+{\LARGE \bfseries Detector de Pivotes de Riego y Silobolsas en Imágenes Satelitales para aplicaciones agrícolas
+}\\[0.2cm] % Thesis title
+\HRule \\[1cm] % Horizontal line
+
+ 
+\begin{minipage}[t]{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Autores: }{Gianfranco \textsc{Barbiani}, Loreley \textsc{Bustamante}}\\ % Author name - remove the \href bracket to remove the link
+\end{flushleft}
+\end{minipage}
+\begin{minipage}[t]{0.4\textwidth}
+\begin{flushright} \large
+\emph{Director:}\\{Mg. Ing. Miguel \textsc{Solinas}} \\
+ % Supervisor name - remove the \href bracket to remove the link  
+\emph{Codirector:}\\{Dr. Ing. Miguel \textsc{Solinas} Jr.}
+\\~\\~\\ % Supervisor name - remove the \href bracket to remove the link  
+\end{flushright}
+\end{minipage}
+
+{\large \today}\\ % Date
+\vfill
+\end{center}
+\end{titlepage}
+\clearpage % Start a new page
+\pagebreak
+
+%--------------------------------------------------------
+%	ABSTRACT
+%--------------------------------------------------------
+\begin{abstract}
+En este Proyecto Integrador se diseñó e implementó una aplicación que hace uso de Machine Learning (ML) aplicado a la detección de objetos en imágenes satelitales para su aplicación en agricultura. Se describen las motivaciones, problemas encontrados y posibles soluciones. Se presentan principios de ML, deep learning y visión por computadora. Por último se presentan algunas conclusiones y futuros trabajos.
+% En el presente proyecto integrador  se podrán identificar las etapas que componen el desarrollo de una aplicación que hace uso de Machine Learning. Se introducirán problemas, motivaciones y posibles soluciones para los mismos. Se expondrán principios sobre Machine Learning, Deep Learning y Visión por Computadora. A continuación habrá una sección sobre los riesgos relacionados al proyecto. Se detallarán las diferentes etapas del desarrollo e implementación de la aplicación así como también métricas, gráficos y figuras que demuestren el funcionamiento esperado de la misma. Al ultimo se concluye con una reflexión final sobre el proyecto, los problemas y limitaciones, y los futuros trabajos que se pueden originar.
+\end{abstract}
+\newpage
+
+%--------------------------------------------------------
+%	LIST OF CONTENTS/FIGURES/TABLES PAGES
+%---------------------------------------------------------
+\tableofcontents % indice de contenidos
+\cleardoublepage
+
+\listoffigures % Write out the List of Figures
+
+\listoftables % Write out the List of Tables
+
+
+%---------------------------------------------------------
+%	THESIS CONTENT - CAPÍTULOS
+%---------------------------------------------------------
+\mainmatter % Begin numeric (1,2,3...) page numbering
+\input{Chapters/Introducción}
+\input{Chapters/Marco_Teorico}
+\input{Chapters/Estado_del_arte}
+\input{Chapters/Análisis_del_Diseño_del_Sistema}
+\input{Chapters/Implementación}
+\input{Chapters/Validación}
+\input{Chapters/Conclusión}
+
+%---------------------------------------------------------------
+%	THESIS CONTENT - APPENDICES
+%---------------------------------------------------------------
+\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+\newpage
+    \chapter{Apéndice}
+    \label{Apéndice}
+    \input{Anexos/Anexo_Imagenes_Dataset}
+    \input{Anexos/Manual_de_Usuario}
+% \end{appendices}
+
+\backmatter
+
+%---------------------------------------------------------------
+%	THESIS CONTENT - BIBLIOGRAFIA
+%---------------------------------------------------------------
+\newpage
+\bibliographystyle{splncs04}
+\bibliography{bibfile}
+\end{document}\grid
