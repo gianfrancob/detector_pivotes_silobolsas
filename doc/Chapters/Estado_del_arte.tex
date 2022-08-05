@@ -1,5 +1,17 @@
 \chapter{Estado del Arte}
 \label{Estado del Arte - YOLO}
+% Para el estado del arte
+% Debería ser relacionado a object recognition
+% Es decir que cosas existen en machine learning para hacer lo que ustedes hacen. ALternativas a YOLO, porque eligimos YOLO, etc
+%que modelos me permiten hacer lo mismo que yolo en terminos de funcionalidad
+%agregarlos en el estado del arte- basarnos mas nada en la funcionalidad
+%nombrar otras alternativas
+% buscar benchmarks entre YOLO y otros detectores de objetos
+
+% 1. Benchmarks entre diferentes modelos de detección de objetos y YOLO
+% 2. Mejoras incrementales entre las diferentes versiones de YOLO, haciendo hincapié en que beneficio daba cada cosa nueva q se agregaba o modificaba entre versiones. Ej: bag of freebies y bag of specials en YOLOv5.
+% 3. Conclusión de la elección
+
 
 \section{Introducción}
 En esta sección se tiene el propósito de hacer una distinción entre los principales tipos Detectores de Objetos. Hacer énfasis en el algoritmo de YOLO y sus variantes. Luego se exponen los Benchmarks (puntos de diferencia) entre los diferentes modelos más populares de detección de objetos y análisis del algoritmo de YOLO. La conclusión de la sección se lleva a cabo con la elección del modelo más conveniente para este proyecto.
@@ -30,7 +42,7 @@ para la detección de objetos en este proyecto.
 \begin{figure}
     \centering
     \includegraphics[width=0.9\textwidth]{img/Yolo1sistema.png}
-    \caption{El sistema de detección de YOLO: Procesar imágenes con YOLO es simple y directo. El sistema (1) cambia el tamaño de la imagen de entrada a 448 × 448, (2) ejecuta una sola red convolucional en la imagen y (3) establece un umbral para las detecciones resultantes según la confianza del modelo. \cite{yolo}}
+    \caption{El sistema de detección de YOLO: Procesar imágenes con YOLO es simple y directo. El sistema (1) cambia el tamaño de la imagen de entrada a 448 × 448, (2) ejecuta una sola red convolucional en la imagen y (3) establece un umbral para las detecciones resultantes según la confianza del modelo. Fuente: \cite{yolo}}
     \label{fig:yolo sistema}
 \end{figure}
    
@@ -42,7 +54,7 @@ La filosofía de las estructuras YOLO consiste en unificar los diferentes compon
 \begin{figure}
     \centering
     \includegraphics[width=0.9\textwidth]{img/YoloModel.png}
-    \caption{Funcionamiento de YOLO: primero se divide la imagen en cuadrículas más pequeñas, sobre éstas se calculan diferentes cajas delimitadoras o bounding boxes y las probabilidades de las distintas clases que se encuentre en ellas, y finalmente se obtienen las detecciones. Fuente \cite{yolo}. }
+    \caption{Funcionamiento de YOLO: primero se divide la imagen en cuadrículas más pequeñas, sobre éstas se calculan diferentes cajas delimitadoras o bounding boxes y las probabilidades de las distintas clases que se encuentre en ellas, y finalmente se obtienen las detecciones. Fuente: \cite{yolo}. }
     \label{fig:yolo funcionamiento}
 \end{figure}
 
@@ -59,7 +71,7 @@ Para llevar a cabo la detección, utilizando YOLO:
 \begin{enumerate}
     \item Primero, el algoritmo divide la imagen en una cuadrícula de tamaño SxS celdas (primera imagen de la izquierda Fig.\ref{fig:yolo funcionamiento}). Si el centro de un objeto cae en una celda de la cuadrícula, esa celda es la responsable de detectar el objeto.\\
     \item Cada una de las celdas detecta B posibles “bounding boxes” o cajas delimitadoras y calcula el nivel de certidumbre o confianza (probabilidad de la celda Pc) de cada una de las cajas (imagen del centro), que reflejan que tan seguro está el modelo de que esa caja contiene un objeto y qué tan seguro está de que efectivamente la caja se corresponde al objeto que ha detectado, es decir, se calculan SxSxB diferentes bounding boxes, la gran mayoría de ellas con un Pc muy bajo.
-    \[Confianza = P(Objeto) ∗ IOU (truth prediction)\] Si no hay objeto en esa celda, la confianza debería de ser 0, en otro caso debería ser el IOU entre la caja detectada y la leída.\\
+    \[Confianza = P(Objeto) * IOU (truth prediction)\] Si no hay objeto en esa celda, la confianza debería de ser 0, en otro caso debería ser el IOU entre la caja detectada y la leída.\\
     \item Cada una de las cajas delimitadoras está compuesta por 5 predicciones: x, y, w, h y la confianza. Donde (x, y) representa las coordenadas del centro de la caja detectada y (w, h) el ancho y altura respectivamente.\\
     \item Además, cada celda de la cuadrícula también predice C probabilidades condicionales P(Clase \textit{i} $|$ Objeto), una por cada clase, que representan las probabilidades de que en esa celda se encuentre el objeto de la clase \textit{i}. Cabe remarcar, que se predice un vector de C probabilidades condicionales por cada celda, independientemente del número de cajas detectadas B.\\
     \item
@@ -91,7 +103,7 @@ Para la predicción de las cajas delimitadoras utiliza la misma metodología que
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.25\textwidth]{img/BoundingBoxesFormula.png}
-    \caption{Predicciones de las cajas delimitadoras}
+    \caption{Predicciones de las cajas delimitadoras. Fuente: \cite{yolov3}}
     \label{fig:prediccion de bb}
 \end{figure}
 
@@ -101,7 +113,7 @@ En otras palabras, la red predice offsets con respecto a cajas de anclaje (ancho
 \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{img/BoundingBoxes.png}\\
-    \caption{Cajas delimitadoras con dimensiones previas y predicciones. Se predice el ancho y la altura de la caja como offsets desde el centro de la caja.Fuente \cite{yolov3}}
+    \caption{Cajas delimitadoras con dimensiones previas y predicciones. Se predice el ancho y la altura de la caja como offset desde el centro de la caja. Fuente: \cite{yolov3}}
     \label{fig:cajas delimitdoras}
 \end{figure}
 \\
@@ -125,7 +137,7 @@ YOLOv3 realiza predicciones en 3 escalas diferentes. El sistema extrae caracter�
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{img/VGG-16-NetPriamidal.png}
-    \caption{Redes Piramidales de Características}
+    \caption{Redes Piramidales de Características. Fuente: \cite{10.1007/978-981-19-0011-2_34}}
     \label{fig:vgg-16}
 \end{figure}
 
@@ -139,7 +151,7 @@ Se utiliza un enfoque híbrido entre el extractor de características utilizado 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{img/Darknet53.png}
-    \caption{Darknet-53}
+    \caption{Darknet-53. Fuente: \cite{yolov3}}
     \label{fig:darknet-53}
 \end{figure}
 
@@ -153,7 +165,43 @@ Se puede ver una comparación en los resultados finales con otras estructuras po
     \caption{Comparación de distintas estructuras de redes neuronales convolucionales: se observa el balance entre velocidad y precisión para 0.5 IOU, destacando YOLOv3 por su gran velocidad y manteniendo una buena precisión. Fuente\cite{yolov3}}
     \label{fig:comparacion RN}
 \end{figure}
-
+% 	        \begin{enumerate}
+%     			\item Darknet + ResNet como modelo base
+%     			\item Regresión Logística para puntaje de confianza
+%     			\item Light-weighted base model
+%     			\item Predicción multiescala
+%     			\item Skip-layer concatenation
+% 	        \end{enumerate}
+%      
+%     \begin{figure}[h]
+%     \caption{Yolo - Workflow}
+%     \centering
+%     \includegraphics[width=0.95\textwidth]{img/workflowYolo.png}
+%     \end{figure}\hfill \break
+% 	\subsubsection{Arquitectura de la NN}
+% 		4.3.1 Darknet
+% 	\subsubsection{YOLO Loss Function}
+% 	\subsubsection{YOLOv2}
+%         \paragraph{Mejoras}
+% 	        \begin{enumerate}
+% 			    \item Batch Normalization
+% 			    \item Resolucion de Imágenes
+% 			    \item Convolutional anchor box detection
+% 			    \item K-mean clustering de las dimensiones de las boxes
+% 			    \item Predicción de locación directa
+% 			    \item Features de granularidad fina
+% 			    \item Entrenamiento Multi-escala
+% 			    \item Depreciación de softmax para predicción de clase
+% 	        \end{enumerate}
+% 	\subsubsection{YOLOv3}
+%         \paragraph{Mejoras}
+% 	        \begin{enumerate}
+%     			\item Darknet + ResNet como modelo base
+%     			\item Regresión Logística para puntaje de confianza
+%     			\item Light-weighted base model
+%     			\item Predicción multiescala
+%     			\item Skip-layer concatenation
+% 	        \end{enumerate}
 \newpage
 \subsubsection{YOLOv4}
 
@@ -175,7 +223,7 @@ La arquitectura de YOLOv4 se puede dividir en 3 partes:
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{img/ObjectDetectionArqui.png}
-    \caption{Principales componentes de un Detector de Objetos moderno de una etapa.}
+    \caption{Principales componentes de un Detector de Objetos moderno de una etapa. Fuente: \cite{yolov4}}
     \label{fig:object-detection-arqui}
 \end{figure}
 
@@ -259,14 +307,14 @@ Hay muchos módulos diferentes presentes, pero en ésta parte solo se hace foco 
 \begin{figure}[h!]
         \centering
         \includegraphics[width=0.8\textwidth]{img/BagOfSpecials.png}
-        \caption{Diferentes métodos presentes en la Bag of Specials}
+        \caption{Diferentes métodos presentes en la Bag of Specials. Fuente:\cite{img_bag-of-specials}}
         \label{fig:bag-of-specials}
     \end{figure}
 
 \begin{enumerate}
     \item {Módulo de Atención Espacial o Spatial Attention Model (SAM)}
 
-    Se aplica una máscara de atención espacial a las features de entrada, para obtener un feature map refinado: Se destacan así las características más relevantes creadas por las capas convolucionales y se remueven las menos importantes. 
+    Se aplica una máscara de atención espacial a las características de entrada, para obtener un features map refinado: Se destacan así las características más relevantes creadas por las capas convolucionales y se remueven las menos importantes. 
     Produciendo una mejora en la clasificación y la detección, con un costo computacional bajo.
     En YOLOv4, una versión modificada de SAM \cite{yolov4} es usada, en la cual no se aplica el maximum ni el average pooling. 
     \\
@@ -274,7 +322,7 @@ Hay muchos módulos diferentes presentes, pero en ésta parte solo se hace foco 
     \begin{figure}[h!]
         \centering
         \includegraphics[width=0.8\textwidth]{img/SAM.png}
-        \caption{Módulo de Atención Espacial \cite{sam1}}
+        \caption{Módulo de Atención Espacial. Fuente: \cite{sam1}}
         \label{fig:sam}
     \end{figure}
 \end{enumerate}
@@ -282,7 +330,7 @@ Hay muchos módulos diferentes presentes, pero en ésta parte solo se hace foco 
     \begin{figure}[h!]
         \centering
         \includegraphics[width=1\textwidth]{img/modifedsam.png}
-        \caption{Módulo de Atención Espacial Modificado \cite{yolov4}}
+        \caption{Módulo de Atención Espacial Modificado. Fuente: \cite{yolov4}}
         \label{fig:sam}
     \end{figure}
 
@@ -311,7 +359,7 @@ En la siguiente tabla se ve claramente cómo el cambio de arquitectura en YOLO v
 \begin{figure}[h!]
     \centering
     \includegraphics[width=1\textwidth]{img/tablaFLOPS.png}
-    \caption{Arquitecturas: Memoria y FLOPS}
+    \caption{Arquitecturas: Memoria y FLOPS. Fuente: \cite{yolov5}}
     \label{fig:tabla flops}
 \end{figure}
 
@@ -322,7 +370,7 @@ El objetivo es producir un modelo de detector de objetos que sea muy eficaz (eje
 \begin{figure}[h!]
     \centering
     \includegraphics[width=1\textwidth]{img/Yolov5.png}
-    \caption{YOLOv5 - Rendimiento}
+    \caption{YOLOv5 - Rendimiento. Fuente: \cite{yolov5}}
     \label{fig:yolo-v5-comparacion}
 \end{figure}
 

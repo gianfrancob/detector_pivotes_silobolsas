@@ -1,6 +1,44 @@
+%--------------------------------------------------------
+%	LaTeX CONFIG
+%--------------------------------------------------------
+%\documentclass[11pt, oneside]{Thesis} % The default font size and one-sided printing (no margin offsets)
+
+% \documentclass[runningheads]{llncs}
+% \usepackage{subfig}
+% \usepackage{graphicx}
+% \usepackage{url}
+% \usepackage{float}
+% \usepackage{amsmath}
+% \usepackage{amsfonts}
+% \usepackage{caption} 
+% \usepackage{amssymb}
+% \captionsetup[table]{skip=1pt}
+% \captionsetup[figure]{skip=1pt}
+% \usepackage[belowskip=-1pt,aboveskip=5pt]{caption}
+% \setlength{\intextsep}{10pt plus 0pt minus 10pt}
+% \usepackage[utf8]{inputenc}
+% \usepackage[table]{xcolor}
+% \usepackage[dvipsnames]{xcolor}
+% \usepackage[spanish, es-tabla, es-lcroman]{babel}
+% \usepackage{hyperref}
+
+% \hypersetup{
+%     colorlinks=true,
+%     linkcolor=blue,
+%     filecolor=magenta,      
+%     urlcolor=cyan,
+%     pdftitle={Overleaf Example},
+%     pdfpagemode=FullScreen,
+%     }
+% \urlstyle{same}
+% \begin{document}
+
 %----------------------------------------------------------------------------------------
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
+
+% \documentclass[11pt, oneside]{Thesis} % The default font size and one-sided printing (no margin offsets)
+% \graphicspath{{Pictures/}} % Specifies the directory where pictures are stored
 
 \documentclass[runningheads]{llncs}
 \usepackage[titletoc,toc,page]{appendix}
@@ -49,11 +87,27 @@
     pdfpagemode=FullScreen
 } % Colors hyperlinks in blue - change to black if annoying
 
+% Keywords command
+\providecommand{\keywords}[1]
+{
+  \small	
+  \textbf{\textit{Keywords---}} #1
+}
 
 \begin{document}
 \frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % New command to make the lines in the title page
 \selectlanguage{spanish}
+%--------------------------------------------------------
+%	TITLE, etc.
+%--------------------------------------------------------
+% \title{Detector de imágenes satelitales de extremo a extremo para aplicaciones agrícolas}
+% \author{Gianfranco Barbiani \inst{1}, Loreley Bustamante \inst{2}}
+% \institute{Facultad de Ciencias Exactas, Físicas y Naturales, Córdoba, Argentina}
+% \authorrunning{G. Barbiani, L. Bustamante}
+% \maketitle  
+% \keywords{Modelo de Machine Learning \and Detección y Clasificación de 
+% Objetos \and Imágenes satelitales \and Visión por Computadora \and Interfaz Gráfica \and YOLO}
 
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
@@ -65,7 +119,7 @@
 
 \begin{figure}[htbp]
 	\centering
-		\includegraphics[width=0.5\textwidth]{img/logo.png}
+		\includegraphics[width=0.4\textwidth]{img/logo.png}
 		\rule{35em}{0.5pt}
 \end{figure}
 
@@ -75,25 +129,38 @@
 \HRule \\[0.4cm] % Horizontal line
 {\LARGE \bfseries Detector de Pivotes de Riego y Silobolsas en Imágenes Satelitales para aplicaciones agrícolas
 }\\[0.2cm] % Thesis title
-\HRule \\[1cm] % Horizontal line
+\HRule \\[0.5cm] % Horizontal line
 
- 
-\begin{minipage}[t]{0.4\textwidth}
+\begin{minipage}{0.49\textwidth}
 \begin{flushleft} \large
-\emph{Autores: }{Gianfranco \textsc{Barbiani}, Loreley \textsc{Bustamante}}\\ % Author name - remove the \href bracket to remove the link
+\emph{Autor: }{Gianfranco \textsc{Barbiani}}\\
+\emph{Matricula: }{36372639}\\
+\emph{Tel.: }{3512093135}\\
+\emph{Email: }{gianfranco.barbiani@mi.unc.edu.ar}\\~\\
 \end{flushleft}
 \end{minipage}
-\begin{minipage}[t]{0.4\textwidth}
-\begin{flushright} \large
-\emph{Director:}\\{Mg. Ing. Miguel \textsc{Solinas}} \\
- % Supervisor name - remove the \href bracket to remove the link  
-\emph{Codirector:}\\{Dr. Ing. Miguel \textsc{Solinas} Jr.}
-\\~\\~\\ % Supervisor name - remove the \href bracket to remove the link  
-\end{flushright}
+\begin{minipage}{0.49\textwidth}
+\begin{flushleft} \large
+\emph{Autor: }{Loreley \textsc{Bustamante}}\\
+\emph{Matricula: }{32298299}\\
+\emph{Tel.: }{3516770907}\\
+\emph{Email: }{loreley.bustamante@mi.unc.edu.ar}\\~\\
+\end{flushleft}
 \end{minipage}
 
+\begin{minipage}{0.49\textwidth}
+\begin{flushleft} \large
+\emph{Director: }{Mg. Ing. Miguel \textsc{Solinas}}\\
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.49\textwidth}
+\begin{flushleft} \large
+\emph{Codirector: }{Dr. Ing. Miguel \textsc{Solinas} Jr.}\\
+\end{flushleft}
+\end{minipage}
+
+\vspace*{\fill}
 {\large \today}\\ % Date
-\vfill
 \end{center}
 \end{titlepage}
 \clearpage % Start a new page
@@ -103,9 +170,10 @@
 %	ABSTRACT
 %--------------------------------------------------------
 \begin{abstract}
-En este Proyecto Integrador se diseñó e implementó una aplicación que hace uso de Machine Learning (ML) aplicado a la detección de objetos en imágenes satelitales para su aplicación en agricultura. Se describen las motivaciones, problemas encontrados y posibles soluciones. Se presentan principios de ML, deep learning y visión por computadora. Por último se presentan algunas conclusiones y futuros trabajos.
+En este Proyecto Integrador se diseñó e implementó una aplicación que hace uso de Machine Learning (ML) aplicado a la detección de objetos en imágenes satelitales para su aplicación en agricultura. Se describen las motivaciones, problemas encontrados y posibles soluciones. Se presentan principios de ML, deep learning y visión por computadora. Por último se presentan algunas conclusiones y sugerencias para futuros trabajos.
 % En el presente proyecto integrador  se podrán identificar las etapas que componen el desarrollo de una aplicación que hace uso de Machine Learning. Se introducirán problemas, motivaciones y posibles soluciones para los mismos. Se expondrán principios sobre Machine Learning, Deep Learning y Visión por Computadora. A continuación habrá una sección sobre los riesgos relacionados al proyecto. Se detallarán las diferentes etapas del desarrollo e implementación de la aplicación así como también métricas, gráficos y figuras que demuestren el funcionamiento esperado de la misma. Al ultimo se concluye con una reflexión final sobre el proyecto, los problemas y limitaciones, y los futuros trabajos que se pueden originar.
-\end{abstract}
+\end{abstract} \hspace{10pt}
+\keywords{Computer vision, Object detection, Artificial satellites, Rural areas, Public domain software}
 \newpage
 
 %--------------------------------------------------------
@@ -136,8 +204,10 @@ En este Proyecto Integrador se diseñó e implementó una aplicación que hace u
 %---------------------------------------------------------------
 \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
 \newpage
+% \begin{appendices}
     \chapter{Apéndice}
     \label{Apéndice}
+    % \renewcommand{\thesection}{A.\arabic{section}}
     \input{Anexos/Anexo_Imagenes_Dataset}
     \input{Anexos/Manual_de_Usuario}
 % \end{appendices}
@@ -147,6 +217,11 @@ En este Proyecto Integrador se diseñó e implementó una aplicación que hace u
 %---------------------------------------------------------------
 %	THESIS CONTENT - BIBLIOGRAFIA
 %---------------------------------------------------------------
+%\input{Chapters/Bibliografia} 
+% \lhead{\emph{Bibliografía}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+
+% \bibliographystyle{IEEEtran}
+% \bibliography{Bibliography}
 \newpage
 \bibliographystyle{splncs04}
 \bibliography{bibfile}
