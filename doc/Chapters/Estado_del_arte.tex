@@ -1,17 +1,5 @@
 \chapter{Estado del Arte}
 \label{Estado del Arte - YOLO}
-% Para el estado del arte
-% Debería ser relacionado a object recognition
-% Es decir que cosas existen en machine learning para hacer lo que ustedes hacen. ALternativas a YOLO, porque eligimos YOLO, etc
-%que modelos me permiten hacer lo mismo que yolo en terminos de funcionalidad
-%agregarlos en el estado del arte- basarnos mas nada en la funcionalidad
-%nombrar otras alternativas
-% buscar benchmarks entre YOLO y otros detectores de objetos
-
-% 1. Benchmarks entre diferentes modelos de detección de objetos y YOLO
-% 2. Mejoras incrementales entre las diferentes versiones de YOLO, haciendo hincapié en que beneficio daba cada cosa nueva q se agregaba o modificaba entre versiones. Ej: bag of freebies y bag of specials en YOLOv5.
-% 3. Conclusión de la elección
-
 
 \section{Introducción}
 En esta sección se tiene el propósito de hacer una distinción entre los principales tipos Detectores de Objetos. Hacer énfasis en el algoritmo de YOLO y sus variantes. Luego se exponen los Benchmarks (puntos de diferencia) entre los diferentes modelos más populares de detección de objetos y análisis del algoritmo de YOLO. La conclusión de la sección se lleva a cabo con la elección del modelo más conveniente para este proyecto.
@@ -165,43 +153,7 @@ Se puede ver una comparación en los resultados finales con otras estructuras po
     \caption{Comparación de distintas estructuras de redes neuronales convolucionales: se observa el balance entre velocidad y precisión para 0.5 IOU, destacando YOLOv3 por su gran velocidad y manteniendo una buena precisión. Fuente\cite{yolov3}}
     \label{fig:comparacion RN}
 \end{figure}
-% 	        \begin{enumerate}
-%     			\item Darknet + ResNet como modelo base
-%     			\item Regresión Logística para puntaje de confianza
-%     			\item Light-weighted base model
-%     			\item Predicción multiescala
-%     			\item Skip-layer concatenation
-% 	        \end{enumerate}
-%      
-%     \begin{figure}[h]
-%     \caption{Yolo - Workflow}
-%     \centering
-%     \includegraphics[width=0.95\textwidth]{img/workflowYolo.png}
-%     \end{figure}\hfill \break
-% 	\subsubsection{Arquitectura de la NN}
-% 		4.3.1 Darknet
-% 	\subsubsection{YOLO Loss Function}
-% 	\subsubsection{YOLOv2}
-%         \paragraph{Mejoras}
-% 	        \begin{enumerate}
-% 			    \item Batch Normalization
-% 			    \item Resolucion de Imágenes
-% 			    \item Convolutional anchor box detection
-% 			    \item K-mean clustering de las dimensiones de las boxes
-% 			    \item Predicción de locación directa
-% 			    \item Features de granularidad fina
-% 			    \item Entrenamiento Multi-escala
-% 			    \item Depreciación de softmax para predicción de clase
-% 	        \end{enumerate}
-% 	\subsubsection{YOLOv3}
-%         \paragraph{Mejoras}
-% 	        \begin{enumerate}
-%     			\item Darknet + ResNet como modelo base
-%     			\item Regresión Logística para puntaje de confianza
-%     			\item Light-weighted base model
-%     			\item Predicción multiescala
-%     			\item Skip-layer concatenation
-% 	        \end{enumerate}
+
 \newpage
 \subsubsection{YOLOv4}
 

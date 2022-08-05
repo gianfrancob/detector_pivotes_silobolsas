@@ -1,8 +1,6 @@
 \chapter{Análisis del Diseño del Sistema}
 \label{Análisis del Diseño del Sistema}
 
-% 5to scoping: analizar el proyecto, de como llegamos ahí, casos de usos existentes, pruebas de conceptos 
-% conclusión,tenes un detector de objeto usando tal versión
 \section{Introducción}
 Luego de haber adquirido una cantidad de conocimiento sobre Detección de Objetos en general y sobre el algoritmo de YOLO en particular, el presente capitulo 
 investiga los problemas que tiene el área agropecuaria y la necesidad de detección y de localización de las silobolsas y mecanismos de riego por pivotes. Para esto, se realizó una entrevista con las partes interesadas o stakeholders en hacer uso de la aplicación resultante de este trabajo final, donde manifestaron su importancia. Luego se procede a analizar si las soluciones propuestas a las cuales se llegaron en la entrevista representan un caso de uso de Detección de Objetos. Por último, se especifican Componentes, Requerimientos y Comportamiento del sistema a implementar.
@@ -53,7 +51,6 @@ Ante las preocupaciones anteriormente planteadas, se propone una solución para 
 
 \subsection{Casos de uso de Machine Learning - Detección de objetos}
 
-%2. Casos de uso --> acciones q se podrían tomar haciendo uso de nuestra aplicación
 
 Desde el éxito de Machine Learning y el nacimiento de numerosas aplicaciones que la usan, como el reconocimiento facial en tiempo real (celulares), sugerencias de compras, autos autónomos, entre otras, están, hoy en día, todas al alcance de cualquiera. Es una tecnología que está madura y es adoptada en la vida cotidiana.
 
@@ -63,7 +60,6 @@ Otro impacto de esta tecnología, es en el futuro de la conducción con Piloto a
 
 
 \subsection{Funcionalidades}
-%--> explicar que funcionalidades se le dan al usuario final con nuestra app (explicar la API REST, explicar la pagina web. No como están hechas sino que funcionalidades tienen)
 
 Luego de la entrevista y de la evaluación del caso de uso, se consideran necesarias las siguientes funcionalidades para el prototipo:
 \begin{itemize}
@@ -76,7 +72,7 @@ Este prototipo se realiza con una una API de REST, o API de RESTful \cite{api}, 
 
 En otras palabras, las APIs le permiten interactuar con una computadora o un sistema para obtener datos o ejecutar una función, de manera que el sistema comprenda la solicitud y la cumpla. Suele considerarse como el contrato entre el proveedor de información y el usuario, donde se establece el contenido que se necesita por parte del consumidor (la llamada) y el que requiere el productor (la respuesta). \\
 
-\subsection{Definición de los Componentes}% --> como esta compuesto nuestra app
+\subsection{Definición de los Componentes}
 
 Con el fin de implementar las funcionalidades descritas en la sección anterior, en primer lugar se definen los componentes del prototipo en su totalidad.
 
@@ -103,7 +99,7 @@ Con el fin de implementar las funcionalidades descritas en la sección anterior,
 \end{enumerate}
 
 \newpage
-\subsection{Definición de los Requerimientos} %--> que tiene que cumplir y/o otorgar al user
+\subsection{Definición de los Requerimientos}
 
 Para especificar el funcionamiento general del sistema, se va a hacer uso del lenguaje de modelado UML. Si bien se trata del desarrollo de un sistema distribuido con una variedad de protocolos y tecnologı́as, el prototipo final es un producto de software, por lo cual un modelado en SysML \cite{sysml} no se consideró.
 
