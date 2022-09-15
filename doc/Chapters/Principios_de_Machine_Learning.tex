@@ -14,7 +14,7 @@ Sin embargo, podemos destacar otros ámbitos capaces de reconocer objetos, por e
 
 \subsection{Fundamentos de Machine Learning}
 
-Machine Learning \cite{ml}, es esencialmente un conjunto de algoritmos diseñado por un ser humano, pero que aprenden de los datos a los cuales son expuesto, dicho de otra manera, un conjunto de datos se usa para entrenar un modelo matemático de modo que cuando vea datos similares en el futuro, sepa reconocerlos. Los modelos, normalmente, toman datos como entrada y luego emiten una predicción de algo de interés. Estos algoritmos son ejecutados típicamente en algún tipo de computadora especial y sirven para resolver problemas de:
+Machine Learning \cite{ml}, es esencialmente un conjunto de algoritmos diseñado por el ser humano, pero que aprenden de los datos a los cuales son expuestos, dicho de otra manera, un conjunto de datos se usa para entrenar un modelo matemático de modo que cuando vea datos similares en el futuro, sepa reconocerlos. Los modelos, normalmente, toman datos como entrada y luego emiten una predicción de algo de interés. Estos algoritmos son ejecutados típicamente en algún tipo de computadora especial y sirven para resolver problemas de:
 \begin{itemize}
     \item \textbf{Clasificación:} Retorna probabilidades de clase o distingue clases. Figura \ref{fig:clasificacion}.
     \item \textbf{Regresión:} Hace predicciones o estimaciones (en general numéricas). Figura \ref{fig:regresion}.
@@ -79,7 +79,6 @@ En este capítulo, se introducen brevemente conceptos básicos relacionados al p
 
 \subsection{Definición formal de Redes Neuronales}
 En el aprendizaje supervisado, un dataset (conjunto de datos) de entrenamiento \mathbf{D = (xi, yi)}, representa a una función de mapeo (\mathbf{F : xi → yi}) definida por sus observaciones \textit{xi} y su correspondiente etiqueta \textit{yi}, que son variables independiente e idénticamente distribuidas (i.i.d) de una distribución \textit{Px},y. Luego, una red Neuronal es entrenada para aprender una función de mapeo \textit{f} que aproxima a \textit{F}. El objetivo de una Red Neuronal es relacionar correctamente las entradas \textit{xi} con las salidas \textit{yi}, mediante la adaptación de sus parámetros $\theta$. Por ejemplo, en un problema de clasificación de dígitos, \textit{xi} consiste en imágenes de dígitos mientras que \textit{yi} corresponde a la categoría del dígito.
-
 
 En dos pasos, un clasificador de redes Neuronales aprende una función de mapeo \mathbf{y = f(x; $\theta$)} y adapta los parámetros $\theta$ que minimiza las predicciones del modelo y la verdad absoluta.
 

@@ -78,30 +78,41 @@ Con el fin de implementar las funcionalidades descritas en la sección anterior,
 
 \begin{enumerate}
 
-    \item \textbf{Elección del Modelo :} El modelo elegido luego de realizar varias pruebas y con el cual se obtuvieron los mejores resultados fue: YOLOv5, con un excelente rendimiento en la detección de objetos, en comparación a sus versiones anteriores.
-    
-    \item \textbf{Elección del lenguaje de programación:} El framework empleado para el entrenamiento y en el cual esta basado YOLOv5 \cite{yolov5} en Pytorch y Python.
-    
-    \item \textbf{Desarrollo de una API: }El código escrito en JavaScript es el código cliente que invoca al servidor. Para que sea accesible a través de Internet es necesario el desarrollo de una API REST, que permita llamar las funciones con métodos HTML. La herramienta elegida para esa tarea es Node.js, es un entorno en tiempo de ejecución multiplataforma para la capa del servidor basado en JavaScript. Node.js es a su vez un entorno controlado por eventos diseñado para crear aplicaciones escalables, permitiéndote establecer y gestionar múltiples conexiones al mismo tiempo y flexible para aplicaciones web y APIs.
-    
-    \item \textbf{Desarrollo de una GUI:} La API públicamente expuesta a Internet necesita un frontend, o una interfaz web, que acceda a ella. Su funcionalidad consiste en obtener información de la API y mostrarla de forma entendible para el usuario, como también obtener datos ingresados por el usuario y enviarlos para su procesamiento a la API.
-    Para lograr eso, se decidió utilizar Bootstrap \cite{bootstrap}, donde las páginas que adaptan su contenido de forma dinámica a medida que reciben entradas del usuario, en vez de descargar páginas nuevas de un servidor. La herramienta proporciona plantillas para CSS y HTML que facilitan la colocación y el diseño de la página, las fuentes, los botones y los elementos de navegación, de modo que implementar con ella un diseño web moderno resulta muy sencillo.
-    
-    \item \textbf{Diagrama general de la arquitectura }
+    \item \textbf{Modelo de Machine Learning}: Se necesita de un Modelo de Machine Learning que sea re-entrenable para detectar las clases de pivotes y de silobolsas. Que tenga un gran rendimiento en la detección de objetos para así cumplir con las exigencias en los cortos tiempos de inferencia deseados. Además, que sea liviano, para poder ser desplegado en un amplia variedad de sistemas, desde embebidos hasta clústeres.
+
+    \item \textbf{Desarrollo de una API}: Se requiere de un proceso de continuo funcionamiento que sea capaz de recibir consultas, procesar los datos recibidos, disparar la ejecución del modelo para la inferencia y enviar mensajes al usuario final, ya sea con los resultados de detección de su consulta o bien notificar sobre la ocurrencia de algún error. En éste sentido, optar por el desarrollo de un API REST fue lo más óptimo, debido a su facilidad en la implementación y la amplia documentación disponible, sea cual sea el framework y/o lenguaje seleccionado para su desarrollo.
+
+    \item \textbf{Desarrollo de una GUI}: Se precisa de una interfaz gráfica, que sea amigable para cualquier usuario y que sea capaz de generar consultas con los requerimientos del usuario y comunicarlas con el backend para su posterior procesamiento. A su vez, debe ser capaz de transmitir la información recibida por el backend de manera clara al usuario. Es por eso, que se optó por desarrollar un Frontend, representado por una página web, una vez más, beneficiándose en la rapidez en su implementación y el acceso a documentación detallada, sea cual sea el framework y/o lenguaje seleccionado para su desarrollo.
+
+    \item \textbf{Diagrama general de la arquitectura}
     \begin{figure}[h!]
         \centering
         \includegraphics[width=1\textwidth,center]{img/BE - API - FE.drawio.png}
         \caption{Arquitectura del Software Implementado}
         \label{fig:be - api - fe}
     \end{figure}
+\end{enumerate}
+
+\subsubsection{Selección de los Componentes}
+\begin{enumerate}
+
+    \item \textbf{Elección del Modelo de Machine Learning:} 
+    Luego del análisis y comparaciones entre los rendimientos de los diferentes modelos de ML más usados, se optó por una primera elección de YOLOv3 \cite{yolov3}. Se realizaron pruebas con diferentes sub-versiones del mismo (ej.: tiny, medium, large), donde variaba la profundidad de su arquitectura de red neuronal, afectando la precisión y los tiempos en las inferencias. Para éste modelo, se tomó mucho tiempo para re-entrenarlo y tratar de mejorar su precisión: aplicando diferentes técnicas de data augmentation sobre el dataset; modificando los hiper-parámetros del modelo; y hasta modificando secciones de su arquitectura de red neuronal, pero sin obtener los resultados esperados. Se tenían problemas para detectar objetos muy pequeños (silobolsas) junto a los objetos grandes (pivotes), o con diferentes texturas y colores, por lo que se optó por continuar con una versión más reciente del mismo: YOLOv5 \cite{yolov5}, que contaba con mejoras respecto a la versión 3, gracias a que se trata de un proyecto muy activo y en continuo desarrollo. Finalmente, éste fue el modelo elegido luego de realizar varias pruebas y mejoras con cambios en la configuración, modificando hiper parámetros con el con el fin de obtener mejores resultados, otorgando un excelente rendimiento y precisión en la detección de objetos, en comparación a sus alternativas (otras versiones de YOLO u otros modelos de ML).
     
+    \item \textbf{Elección del lenguaje de programación:} El framework empleado para el entrenamiento y en el cual está basado el proyecto oficial de YOLOv5 \cite{yolov5}, es Python + Pytorch. En la selección del lenguaje con el cual se desarrollarían los scripts de diversa índole que fueran surgiendo en el desarrollo del proyecto, los lenguajes de programación conocidos, tales como C/C++ o JAVA, fueron descartados, ante la opción de Python, dada la mayor familiaridad y experiencia con dicho lenguaje, y a la amplia variedad de librerías orientadas al tratamiento de imágenes y datos que éste ofrece.
+    
+    \item \textbf{Elección para el desarrollo de una API:} Para el desarrollo del Backend, se optó por modificar y ampliar las funcionalidades que el repositorio oficial de YOLOv5 brindaba. El mismo, esta basado en Python+Flask, y la familiaridad y el conocimiento previo con dichos lenguaje y framework, la hacían una gran opción sobra la cual seguir desarrollando. Originalmente, ofrecía una implementación muy limitada para la clase de uso que se pretendía dar, y es por estos motivos, que se decidió trabajar sobre ésta base y agregarle las funcionalidades necesarias para cumplir con los objetivos del proyecto.
+    En cuanto al servidor web necesario para desplegar y exponer un servicio continuo de comunicación, se optó por desarrollar el software en JavaScript. Ésta elección fue fundada en el hecho tener experiencia previa trabajando con dicho lenguaje, y las bondades que éste ofrece, para el desarrollo de éste tipo de aplicaciones web, frente a sus alternativas (Python o JAVA). JavaScript es, entonces, el código cliente que invoca al servidor, pero para que sea accesible a través de Internet es necesario continuar con el desarrollo de una API REST que permita llamar las funciones con métodos HTML. La herramienta elegida para proseguir con esa tarea es Node.js, que es un entorno en tiempo de ejecución multiplataforma para la capa del servidor basado en JavaScript, sobre el cual se tiene experiencia previa y se dispone de mucha documentación detallada online. Node.js es, a su vez, un entorno controlado por eventos, diseñado para crear aplicaciones escalables, permitiendo establecer y gestionar múltiples conexiones al mismo tiempo y flexibilidad para aplicaciones web y APIs, convirtiéndolo en el candidato más óptimo para el desarrollo de esta funcionalidad de la API.
+    
+    \item \textbf{Elección para el desarrollo de una GUI:} La API, públicamente expuesta a Internet, necesita un Frontend, o una interfaz web, que permita acceder a ella. Su funcionalidad consiste en obtener información de la API y mostrarla de forma entendible para el usuario, como también, obtener datos ingresados por el mismo y enviarlos para su procesamiento a la API.
+    Para lograr eso, frente a la falta de experiencia específica previa en el desarrollo de GUIs, a excepción de HTML básico, se decidió utilizar Bootstrap \cite{bootstrap}, por su facilidad de uso y amplia disponibilidad de documentación y guías online. Usando ésta herramienta, las páginas adaptan su contenido de forma dinámica a medida que reciben entradas del usuario, en vez de descargar páginas nuevas de un servidor. Además, proporciona plantillas para CSS y HTML, que facilitan la colocación y el diseño de la página, las fuentes, los botones y los elementos de navegación, de modo que implementar con ella un diseño web moderno resulta sencillo.  
     
 \end{enumerate}
 
 \newpage
 \subsection{Definición de los Requerimientos}
 
-Para especificar el funcionamiento general del sistema, se va a hacer uso del lenguaje de modelado UML. Si bien se trata del desarrollo de un sistema distribuido con una variedad de protocolos y tecnologı́as, el prototipo final es un producto de software, por lo cual un modelado en SysML \cite{sysml} no se consideró.
+Para especificar el funcionamiento general del sistema, se va a hacer uso del lenguaje de modelado UML. Si bien se trata del desarrollo de un sistema distribuido con una variedad de protocolos y tecnologías, el prototipo final es un producto de software, por lo cual un modelado en SysML \cite{sysml} no se consideró.
 
 Antes de plantear los requerimientos, primero es necesario definir un diagrama de casos de uso, como se ve en la Figura \ref{fig:diagrama-casos-de-uso}. En el diagrama se puede observar que el objetivo principal es brindarle al usuario un sistema de detección de objetos sobre imágenes satelitales.
 
@@ -224,13 +235,13 @@ Para comprender mejor cual es la relación estructural entre las diferentes tecn
 \end{figure}
 
 \newpage
-\subsection{Definición del Comportamiento} %--> actores, demo, flujo de la data
+\subsection{Definición del Comportamiento}
 
 Para entender cómo interactúan los componentes diagramados, se emplea un diagrama de secuencia en la Figura \ref{fig:secuencia}, en el cual se muestra el flujo de mensajes para el caso de subir una imagen a analizar y su posterior descarga, como también para verificar la validez del formato de una imagen y en caso de ser válido, proveer los resultados de las detecciones correspondientes.
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.9\textwidth]{img/Diagrama de Secuencia.drawio.png}
+    \includegraphics[width=1\textwidth]{img/Diagrama de Secuencia.drawio.png}
     \caption{Diagrama de Secuencia}
     \label{fig:secuencia}
 \end{figure}
@@ -355,7 +366,7 @@ En la presente sección se describen las estrategias para manejar cada riesgo id
 \begin{table}[h!]
     \begin{tabular}{ | m{1.5cm} | m{5cm}| m{5cm} |}
         \hline
-        \textbf{Código} & \textbf{Riesgo} & \textbf{Probabilidad} \\
+        \textbf{Código} & \textbf{Riesgo} & \textbf{Estrategias de Manejo del riesgo} \\
         \hline
         Riesgo-01 & Problemas de funcionamiento o fuera de servicio de la Máquina donde se desarrolla el proyecto  & \begin{itemize}
          \item Implementación de un respaldo de información en la nube con repositorios de Github.
@@ -389,7 +400,7 @@ En la presente sección se describen las estrategias para manejar cada riesgo id
 \begin{table}[h!]
     \begin{tabular}{ | m{1.5cm} | m{5cm}| m{5cm} |}
         \hline
-        \textbf{Código} & \textbf{Riesgo} & \textbf{Probabilidad} \\
+        \textbf{Código} & \textbf{Riesgo} & \textbf{Estrategias de Manejo del riesgo} \\
         \hline
          Riesgo-05 & Falta de conocimiento o documentación para el uso de los frameworks, del software o los lenguajes de programación elegidos.&  \begin{itemize} 
                     \item Lectura de tutoriales y realización de cursos cortos para lograr una introducción en temas cuyo desconocimiento impida el avance del proyecto.
