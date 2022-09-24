@@ -28,6 +28,11 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 RUN git clone https://github.com/gianfrancob/detector_pivotes_silobolsas /usr/src/yolov5
 
+RUN mkdir utils/flask_rest_api/postedImages
+RUN mkdir runs
+RUN mkdir runs/RESTapi
+RUN mkdir runs/RESTapi/results
+
 # Set environment variables
 ENV OMP_NUM_THREADS=8
 
